@@ -1,0 +1,20 @@
+1 - Default Get 
+    @GET - http://localhost:PORT
+    res{
+        "Hello World"
+    }
+
+2 - Pixabay Get 
+    @GET - http://loclahost:PORT/Pixabay
+    res{
+        "Hello Pixabay!"
+    }
+
+3 - Pixabay get Images
+    @POST - http://loclahost:PORT/Pixabay
+    req{
+        {"search" : "$searchQuery"}
+    }
+    res{
+        JSON object containg all Images
+    }

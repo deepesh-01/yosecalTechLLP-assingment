@@ -1,0 +1,35 @@
+<html>
+    <head>
+        <title>Pixabay image rendering</title>
+    </head>
+    <body id="body">
+        <h1>Pixabay image API</h1>
+        <div>
+            <form>
+                <input type="text" name="search" id="search" value="covid19">
+                <input type="button" value="Search" onclick="getImages()">
+                <div id="imgs"></div>
+            </form>
+        </div>
+    </body>
+    <script src="./node_modules/axios/dist/axios.min.js"></script>
+    <script>
+        const getImages = async () => {
+            const images = document.getElementById("imgs");
+            images.innerHTML = "";
+            const search = document.getElementById("search").value;
+            const val = {"search" : search};
+            console.log("Search value : ", val);
+            const res = await axios.post("http://localhost:3000/pixabay", val);
+            console.log("res.data value : ",res.data);
+            res.data.hits.map((hit,index)=>{
+            let img = document.createElement("img");
+            img.src = hit.largeImageURL;
+            img.height = "300";
+            img.width = "400";
+            img.style.padding = "10px"
+            document.getElementById("imgs").appendChild(img);
+            });
+        }
+    </script>
+</html>
